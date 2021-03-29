@@ -1,0 +1,41 @@
+﻿.RegistrationDiv, #SignInDiv, .EditEmployee {
+    margin-top: 5%;
+    margin-left: 15%;
+    margin-right: 15%;
+    padding-left: 15%;
+}
+
+#RegisterBtn, #GoToRegistrationBtn, #GoToLogInBtn, #SignInBtn, #saveNewEmployeeBtn, #editEmployeeBtn, .goBackBtn {
+    margin-top: 3%;
+    margin-left: 28%;
+}
+.AddEmployee {
+    margin-left: 25%;
+    margin-top: 5%;
+}
+#modal {
+    display: none;
+    margin-left: 30%;
+    margin-top: 7%;
+    width: 40%;
+}
+#modalBody{
+    padding-left: 40%;
+}
+#MainPageContent {
+    padding: 5% 25%;
+}
+#SearchBar {
+    margin-left: 50%;
+}
+#searchContent {
+    border-left-color: deepskyblue;
+    border-top-color: deepskyblue;
+}
+#LogOut{
+    margin-top: 40%;
+    margin-left: 80%;
+}
+.goBackDiv{
+    margin-left: 24%;
+}

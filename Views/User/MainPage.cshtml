@@ -1,0 +1,97 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model IEnumerable<HRService.ViewModels.EmployeeListViewModel>
+
+<div id="MainPageContent">
+    <h1 class="text-center text-info">Employee List</h1>
+    <div>
+        <form action="/User/AddEmployeePage" method="get">
+            <button type="submit" class="btn btn-outline-success">Add Employee</button>
+        </form>
+    </div>
+
+    <div id="SearchBar">
+        <form action="/User/MainPage" method="get">
+            <input type="search" placeholder="Search..." name="searchContent" id="searchContent"/>
+            <button type="submit" id="searchBtn" class="btn btn-sm btn-outline-info">&#128269;</button>
+        </form>
+    </div>
+
+    @if(TempData["info"] != null)
+    {
+        <p> @TempData["info"] </p>
+        <form action="/User/ResetSearch" method="get">
+            <button type="submit" style="background: none; border: none;"> reset search </button>
+        </form>
+    }
+
+    <div class="EmployeeList">
+        <ol>
+            @foreach (var item in Model)
+            {
+            <li>
+                <p style="display:inline-block;"> @item.FirstName @item.SecondName </p>
+
+                <form action="/User/EditEmployee" method="post" style="display:inline-block">
+                    <input value="@item.Id" name="employeeId" style="display: none" />
+                    <button type="submit" class="btn btn-outline-warning">Edit</button>
+
+                </form>
+
+                <button class="modal-title btn btn-outline-danger" onclick="OpenModal(@item.Id)" id="openModalBtn">Delete</button>
+
+
+            </li>
+           
+            }
+        </ol>
+    </div>
+
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p> Are you sure you want to delete this employee? </p>
+            </div>
+            <div class="modal-body">              
+                <div id="modalBody">
+                    <form style="display: inline-block">
+                        <button id="deleteEmployeeBtn" name="Id" type="button" class="btn btn-danger"> Yes </button>
+                    </form>
+
+                    <button id="closeModal" type="button" class="btn btn-success"> No </button>
+
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <div id="LogOut">
+        <form action="/User/LogOut" method="get">
+            <button type="submit" class="btn btn-dark">Log Out</button>
+        </form>
+    </div>
+</div>
+
+
+<script>
+    var modal = document.getElementById('modal');
+
+    $('#openModalBtn').click(function () {
+        debugger
+        OpenModal();
+    });
+    function OpenModal(input) {
+        modal.style.display = "block";
+        $('#deleteEmployeeBtn').val(input);
+    }
+
+    $('#closeModal').click(function () {
+        modal.style.display = "none";
+    });
+
+</script>
+

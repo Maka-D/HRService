@@ -1,0 +1,100 @@
+﻿@using HRService.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model HRService.ViewModels.RegisterViewModel
+
+<div id="tempData">
+    <p style="text-align: center; margin-top: 3%;" class="text-danger" > @TempData["message"] </p>
+</div>
+
+<div class="RegistrationDiv" id="RegistrationDiv" style="display:none">
+
+    <h3 id="RegistrationH3">Registration</h3>
+    <form action="/Registration/Registration" method="post">
+        <div class="row">
+            <div class="col-md-5">
+                <label class="lable-control">Identity Number</label>
+                <input asp-for="IdentityNumber" class="form-control" />
+                <span asp-validation-for="IdentityNumber" class="text-danger"></span>
+            </div>
+            <div class="col-md-5">
+                <label class="lable-control">First Name</label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <label class="lable-control">Second Name</label>
+                <input asp-for="SecondName" class="form-control" />
+                <span asp-validation-for="SecondName" class="text-danger"></span>
+            </div>
+            <div class="col-md-5">
+                <label class="lable-control">Gender</label>
+                <select asp-for="Gender" class="custom-select">
+                    <option value="" disabled selected hidden>Gender</option>
+                    @foreach (var item in Enum.GetValues(typeof(GenderEnum)))
+                    {
+                        <option value="@item">@item</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <label class="lable-control">Date of Birth</label>
+                <input asp-for="BirthDate" class="form-control" type="date" />
+            </div>
+            <div class="col-md-5">
+                <label asp-for="Email" class="lable-control"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <label asp-for="Password" class="lable-control"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="col-md-5">
+                <label class="lable-control">Repeat Password</label>
+                <input asp-for="RepeatPassword" class="form-control" />
+                <span asp-validation-for="RepeatPassword" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div>
+            <button type="submit" class="btn btn-info" id="RegisterBtn">Register</button>
+        </div>
+        <div>
+            <button type="button" id="GoToLogInBtn" class="btn btn-outline-info">Sign In</button>
+        </div>
+    </form>
+</div>
+
+<div id="SignInDiv">
+    <h3 id="LogInH3">Log In</h3>
+    <form action="/LogIn/SignIn" method="post">
+        <div class="col-md-7">
+            <label class="lable-control">Email</label>
+            <input asp-for="Email" name="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="col-md-7">
+            <label class="lable-control">Password</label>
+            <input asp-for="Password" name="Password" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-info" id="SignInBtn">Sign In</button>
+        </div>
+        <div>
+            <button type="button" id="GoToRegistrationBtn" class="btn btn-outline-info">Register</button>
+        </div>
+    </form>
+
+</div>

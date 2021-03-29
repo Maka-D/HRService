@@ -1,0 +1,101 @@
+﻿@{ 
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+@model HRService.ViewModels.AddEmployeeViewModel
+@using HRService.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+<div class="EditEmployee">
+    <form action="/User/SaveEditedInfo" method="post">
+        <div class="row">
+            <div class="col-md-4">
+                <label class="lable-control">Identity Number</label>
+                <input asp-for="IdentityNumber" class="form-control" />
+                <span asp-validation-for="IdentityNumber" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label class="lable-control">First Name</label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label class="lable-control">Second Name</label>
+                <input asp-for="SecondName"  class="form-control" />
+                <span asp-validation-for="SecondName" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label class="lable-control">Gender</label>
+                <select asp-for="Gender" class="custom-select">
+
+                    <option  disabled selected hidden>Gender</option>
+
+                    @foreach (var item in Enum.GetValues(typeof(GenderEnum)))
+                    {
+                        <option value="@item">@item</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label class="lable-control">Date of Birth</label>
+                <input asp-for="BirthDate" class="form-control" data-date-format="dd-MMM-yyyy" type="text" placeholder="dd-MMM-yyyy"/>
+                <span asp-validation-for="BirthDate" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="Email" class="lable-control"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label class="lable-control">Position</label>
+                <input asp-for="Position"  class="form-control" />
+                <span asp-validation-for="Position" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label class="lable-control">Working Status</label>
+                <select asp-for="Status" class="custom-select">
+
+                    <option  disabled selected hidden>Status</option>
+
+                    @foreach (var item in Enum.GetValues(typeof(WorkingStatusEnum)))
+                    {
+                        <option value="@item">@item</option>
+                    }
+                </select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label class="lable-control">Date of Dismissal</label>
+                <input asp-for="DateOfDismissal" class="form-control" data-date-format="dd-MMM-yyyy" type="text" placeholder="dd-MMM-yyyy" />
+                <span asp-validation-for="DateOfDismissal" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label class="lable-control">Mobile Number</label>
+                <input asp-for="MobileNumber" class="form-control" />
+                <span asp-validation-for="MobileNumber" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-info" id="editEmployeeBtn">Save</button>
+        </div>
+        <div style="display:none">
+            <input asp-for="EmployeeId"/>
+        </div>
+    </form>
+
+</div>
+<div class="goBackDiv">
+    <form action="/User/GoToMainPage" method="get">
+        <button type="submit" class="btn btn-outline-secondary goBackBtn"> Go Back </button>
+    </form>
+
+</div>
